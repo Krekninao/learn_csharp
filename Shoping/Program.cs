@@ -8,7 +8,9 @@ namespace Shopping
         static void Main(string[] args)
         {
             var bookDataFile = File.ReadAllLines("Books.txt");
-            var bookShop = new BookShop(bookDataFile); 
+            var bookShop = new BookShop(bookDataFile);
+
+            var deviceDataFile = File.ReadAllLines("Devices.txt");
         }
     }
 }
