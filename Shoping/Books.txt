@@ -1,0 +1,4 @@
+Misery 50,7 30 King 1000
+WarAndPiece 63,4 80 Tolstoy 1001
+Carry 38,4 58 King 1002
+ThreeFriends 40,1 69 Remark 1003
