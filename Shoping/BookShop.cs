@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Shopping
@@ -15,19 +16,31 @@ namespace Shopping
                 ShopItems.Add(book);
             }
         }
-        public override List<IBook> ShowItems()
+        public override void ShowItems()
         {
-            throw new NotImplementedException();
+            foreach (var shopItem in ShopItems)
+            {
+                Console.WriteLine(shopItem.ToString());
+            }
         }
 
-        public override IBook BuyItem()
+        public override void BuyItem(int id)
         {
-            throw new NotImplementedException();
+            foreach (var book in ShopItems)
+            {
+                if (book.Id == id)
+                {
+                    ShopItems.Remove(book);
+                    Console.WriteLine($"Вы купили {book.Name}. Спасибо за покупку! Заходите к нам ещё!");
+                    break;
+                }
+            }
+
         }
 
         public override void AddItem(IBook product)
         {
-            throw new NotImplementedException();
+            ShopItems.Add(product);
         }
     }
 }
