@@ -18,24 +18,18 @@ namespace Shopping
         }
         public override void ShowItems()
         {
-            foreach (var shopItem in ShopItems)
+            var descriptions = ShopItems.Select(s => s.ToString());
+            foreach (var description in descriptions)
             {
-                Console.WriteLine(shopItem.ToString());
+                Console.WriteLine(description);
             }
         }
 
         public override void BuyItem(int id)
         {
-            foreach (var book in ShopItems)
-            {
-                if (book.Id == id)
-                {
-                    ShopItems.Remove(book);
-                    Console.WriteLine($"Вы купили {book.Name}. Спасибо за покупку! Заходите к нам ещё!");
-                    break;
-                }
-            }
-
+            var device = ShopItems.Single(s => s.Id == id);
+            Console.WriteLine($"Вы купили {device}");
+            ShopItems.Remove(device);
         }
 
         public override void AddItem(IBook product)

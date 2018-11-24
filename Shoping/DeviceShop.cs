@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Shopping
@@ -25,16 +26,12 @@ namespace Shopping
 
         public override void BuyItem(int id)
         {
-            foreach (var device in ShopItems)
-            {
-                if (device.Id == id)
-                {
-                    ShopItems.Remove(device);
-                    Console.WriteLine($"Вы купили {device.Name}. Спасибо за покупку! Заходите к нам ещё!");
-                    break;
-                }
-            }
+            var device = ShopItems.Single(s => s.Id == id);
+            Console.WriteLine($"Вы купили {device}");
+            ShopItems.Remove(device);
         }
+
+        
 
         public List<string> ShowProductCountry()
         {
