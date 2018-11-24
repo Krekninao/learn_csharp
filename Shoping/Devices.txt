@@ -1,4 +1,4 @@
-WashingMachine 75,0 13 China 2000
-VacuumCleaner 34,9 32 India 2001
-TV 67,4 45 Korea 2002
-Microwave 67,8 71 Russia 2003
+1 WashingMachine 75,0 13 China 
+2 VacuumCleaner 34,9 32 India 
+3 TV 67,4 45 Korea 
+4 Microwave 67,8 71 Russia 

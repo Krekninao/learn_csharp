@@ -1,4 +1,4 @@
-Misery 50,7 30 King 1000
-WarAndPiece 63,4 80 Tolstoy 1001
-Carry 38,4 58 King 1002
-ThreeFriends 40,1 69 Remark 1003
+1 Misery 50,7 30 King 
+2 WarAndPiece 63,4 80 Tolstoy 
+3 Carry 38,4 58 King 
+4 ThreeFriends 40,1 69 Remark 
