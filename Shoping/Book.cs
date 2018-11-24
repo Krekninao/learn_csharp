@@ -7,22 +7,25 @@ namespace Shopping
     class Book: IBook
     {
         public string Name { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
         public int Rating { get; set; }
         public int Id { get; set; }
 
         public string Author { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name}. Автор: {Author}. Стоимость: {Price}.";
+        }
+
         public Book(string Data)
         {
             var dataarray = Data.Split(' ');
-            Name = dataarray[0];
-            Price = float.Parse(dataarray[1]);
-            Rating = int.Parse(dataarray[2]);
-            Author = dataarray[3];
-            Id = int.Parse(dataarray[4]);
+            Id = int.Parse(dataarray[0]);
+            Name = dataarray[1];
+            Price = float.Parse(dataarray[2]);
+            Rating = int.Parse(dataarray[3]);
+            Author = dataarray[4];
         }
-
-
-        
     }
 }
