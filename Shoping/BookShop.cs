@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Shopping
 {
-    class BookShop : Shop<IBook>
+    public class BookShop : Shop<IBook>
     {
         public BookShop(string [] booksData)
         {
@@ -34,6 +34,11 @@ namespace Shopping
         public override void AddItem(IBook product)
         {
             ShopItems.Add(product);
+        }
+
+        public int GetNumberOfItems()
+        {
+            return ShopItems.Count;
         }
     }
 }

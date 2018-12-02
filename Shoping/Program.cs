@@ -22,6 +22,8 @@ namespace Shopping
                 Console.WriteLine(country);
             }
             Console.ReadKey();
+
+            
         }
     }
 }

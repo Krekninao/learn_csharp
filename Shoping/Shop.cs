@@ -2,7 +2,7 @@
 
 namespace Shopping
 {
-     abstract class Shop<T> where T: class 
+     public abstract class Shop<T> where T: class 
      {
          protected List<T> ShopItems { get; set; }
          public abstract void ShowItems();
