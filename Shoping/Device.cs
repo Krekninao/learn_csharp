@@ -1,6 +1,6 @@
 ﻿namespace Shopping
 {
-    class Device: IDevice
+    public class Device: IDevice
     {
        
         public Device(string data)

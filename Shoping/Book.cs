@@ -1,6 +1,6 @@
 ﻿namespace Shopping
 {
-    class Book: IBook
+    public class Book: IBook
     {
         public string Name { get; set; }
         public double Price { get; set; }
@@ -22,6 +22,11 @@
             Price = float.Parse(dataarray[2]);
             Rating = int.Parse(dataarray[3]);
             Author = dataarray[4];
+        }
+
+        public Book()
+        {
+
         }
     }
 }

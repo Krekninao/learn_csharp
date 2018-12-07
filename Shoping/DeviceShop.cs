@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Shopping
 {
-    class DeviceShop : Shop<IDevice>
+    public class DeviceShop : Shop<IDevice>
     {
         public DeviceShop(string[] devicesData)
         {
@@ -45,6 +45,11 @@ namespace Shopping
         public override void AddItem(IDevice product)
         {
             ShopItems.Add(product);
+        }
+
+        public int GetNumberOfItems()
+        {
+            return ShopItems.Count();
         }
     }
 }
