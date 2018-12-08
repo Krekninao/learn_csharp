@@ -28,39 +28,34 @@ namespace Shopping.Tests
         [Test]
         public void CheckBuyingBook()
         {
-            _bookShop.BuyItem(1);
-            Assert.AreEqual(0, _bookShop.GetNumberOfItems());
-        }
-
-        [Test]
-        public void CheckAddingDevice()
-        {
-
-            _deviceShop.AddItem(new Device
-            {
-                Id = 2,
-                Name = "GasCooker",
-                ProducingCountry = "Italy",
-                Price = 38.6,
-                Rating = 49
-            });
-            Assert.AreEqual(2, _deviceShop.GetNumberOfItems());
-        }
-
-        [Test]
-        public void CheckBookMapping()
-        {
             var book = _bookShop.BuyItem(1);
             Assert.AreEqual(0, _bookShop.GetNumberOfItems());
             Assert.AreEqual("Misery", book.Name);
             Assert.AreEqual(50, book.Price);
             Assert.AreEqual(30, book.Rating);
             Assert.AreEqual("King", book.Author);
+        }
+
+        [Test]
+        public void CheckAddingDevice()
+        {
+            var newDevice = new Device
+            {
+                Id = 2,
+                Name = "GasCooker",
+                ProducingCountry = "Italy",
+                Price = 38.6,
+                Rating = 49
+            };
+            _deviceShop.AddItem(newDevice);
+            Assert.AreEqual(2, _deviceShop.GetNumberOfItems());
+            var receivedDevice = _deviceShop.BuyItem(newDevice.Id);
+
 
         }
 
         [Test]
-        public void CheckDeviceMapping()
+        public void CheckBuyingDevice()
         {
             var device = _deviceShop.BuyItem(1);
             Assert.AreEqual(0, _deviceShop.GetNumberOfItems());
