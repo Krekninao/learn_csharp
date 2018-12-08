@@ -2,7 +2,11 @@
 {
     public class Device: IDevice
     {
-       
+
+        public Device()
+        {
+            
+        }
         public Device(string data)
         {
             var dataArray = data.Split(' ');

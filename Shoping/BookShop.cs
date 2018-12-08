@@ -24,11 +24,12 @@ namespace Shopping
             }
         }
 
-        public override void BuyItem(int id)
+        public override IBook BuyItem(int id)
         {
-            var device = ShopItems.Single(s => s.Id == id);
-            Console.WriteLine($"Вы купили {device}");
-            ShopItems.Remove(device);
+            var book = ShopItems.Single(s => s.Id == id);
+            Console.WriteLine($"Вы купили {book}");
+            ShopItems.Remove(book);
+            return book;
         }
 
         public override void AddItem(IBook product)
