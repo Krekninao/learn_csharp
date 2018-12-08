@@ -2,16 +2,15 @@
 {
     public class Book: IBook
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public int Rating { get; set; }
-        public int Id { get; set; }
-
         public string Author { get; set; }
 
-        public override string ToString()
+        public Book()
         {
-            return $"{Name}. Автор: {Author}. Стоимость: {Price}.";
+
         }
 
         public Book(string Data)
@@ -24,9 +23,17 @@
             Author = dataarray[4];
         }
 
-        public Book()
+        public void Update(IBook newBook)
         {
+            Name = newBook.Name;
+            Price = newBook.Price;
+            Rating = newBook.Rating;
+            Author = newBook.Author;
+        }
 
+        public override string ToString()
+        {
+            return $"{Name}. Автор: {Author}. Стоимость: {Price}.";
         }
     }
 }

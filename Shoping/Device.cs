@@ -2,11 +2,17 @@
 {
     public class Device: IDevice
     {
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public int Rating { get; set; }
+        public int Id { get; set; }
+        public string ProducingCountry { get; set; }
 
         public Device()
         {
             
         }
+
         public Device(string data)
         {
             var dataArray = data.Split(' ');
@@ -17,13 +23,12 @@
             ProducingCountry = dataArray[4];
         }
 
-        public Device(int id, string name, double price, int rating, string producingCountry)
+        public void Update(IDevice newProduct)
         {
-            Id = id;
-            Name = name;
-            Price = price;
-            Rating = rating;
-            ProducingCountry = producingCountry;
+            Name = newProduct.Name;
+            Price = newProduct.Price;
+            Rating = newProduct.Rating;
+            ProducingCountry = newProduct.ProducingCountry;
         }
 
         public override string ToString()
@@ -31,10 +36,6 @@
             return $"{Name} стоит {Price.ToString("F1")}$. Произведено в {ProducingCountry}";
         }
 
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public int Rating { get; set; }
-        public int Id { get; set; }
-        public string ProducingCountry { get; set; }
+        
     }
 }

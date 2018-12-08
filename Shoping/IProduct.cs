@@ -6,5 +6,6 @@
         double Price { get; set; }
         int Rating { get; set; }
         int Id { get; set; }
+        
     }
 }
