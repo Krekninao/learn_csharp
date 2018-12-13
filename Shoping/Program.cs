@@ -12,11 +12,10 @@ namespace Shopping
             var deviceDataFile = File.ReadAllLines("Devices.txt");
             var deviceShop = new DeviceShop(deviceDataFile);
             
-            Console.WriteLine("Список стран-производителей:");
-            foreach (var country in deviceShop.ShowProductCountry())
-            {
-                Console.WriteLine(country);
-            }
+            bookShop.ShowItems();
+            bookShop.Remove(3);
+            bookShop.ShowItems();
+
             Console.ReadKey();
 
             

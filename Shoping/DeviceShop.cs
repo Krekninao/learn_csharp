@@ -48,6 +48,16 @@ namespace Shopping
             ShopItems.Add(product);
         }
 
+        public override IDevice GetItem(int id)
+        {
+            return ShopItems.Single(s => s.Id == id);
+        }
+
+        public override void Remove(int id)
+        {
+            ShopItems.Remove(ShopItems.Single(s => s.Id == id));
+        }
+
         public int GetNumberOfItems()
         {
             return ShopItems.Count();
