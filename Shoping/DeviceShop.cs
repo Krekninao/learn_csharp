@@ -58,6 +58,11 @@ namespace Shopping
             ShopItems.Remove(ShopItems.Single(s => s.Id == id));
         }
 
+        public override void UpdateItem(IDevice newItem)
+        {
+            ShopItems.Single(s => s.Id == newItem.Id).Update(newItem);
+        }
+
         public int GetNumberOfItems()
         {
             return ShopItems.Count();

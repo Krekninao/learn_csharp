@@ -89,5 +89,56 @@ namespace Shopping.Tests
             Assert.AreEqual("Italy", receivedDevice.ProducingCountry);
         }
 
+        [Test]
+        public void CheckRemovingBook()
+        {
+            _bookShop.Remove(1);
+            Assert.AreEqual(0, _bookShop.GetNumberOfItems());
+        }
+        [Test]
+        public void CheckRemovingDevice()
+        {
+            _deviceShop.Remove(1);
+            Assert.AreEqual(0, _deviceShop.GetNumberOfItems());
+        }
+        [Test]
+        public void CheckUpdatingBook()
+        {
+            var newBook = new Book
+            {
+                Id = 1,
+                Name = "In a beautiful and furious world",
+                Author = "Platonov",
+                Price = 26.7,
+                Rating = 68
+            };
+            _bookShop.UpdateItem(newBook);
+            Assert.AreEqual(1, _bookShop.GetNumberOfItems());
+            var receivedBook = _bookShop.BuyItem(newBook.Id);
+            Assert.AreEqual("In a beautiful and furious world", receivedBook.Name);
+            Assert.AreEqual(26.7, receivedBook.Price);
+            Assert.AreEqual(68, receivedBook.Rating);
+            Assert.AreEqual("Platonov", receivedBook.Author);
+        }
+        [Test]
+        public void CheckUpdatingDevice()
+        {
+            var newDevice = new Device
+            {
+                Id = 1,
+                Name = "GasCooker",
+                ProducingCountry = "Italy",
+                Price = 38.6,
+                Rating = 49
+            };
+            _deviceShop.UpdateItem(newDevice);
+            Assert.AreEqual(1, _deviceShop.GetNumberOfItems());
+            var receivedDevice = _deviceShop.BuyItem(newDevice.Id);
+            Assert.AreEqual("GasCooker", receivedDevice.Name);
+            Assert.AreEqual(38.6, receivedDevice.Price);
+            Assert.AreEqual(49, receivedDevice.Rating);
+            Assert.AreEqual("Italy", receivedDevice.ProducingCountry);
+        }
+
     }
 }
