@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using NUnit.Framework;
 
 namespace Shopping.Tests
@@ -94,12 +95,14 @@ namespace Shopping.Tests
         {
             _bookShop.Remove(1);
             Assert.AreEqual(0, _bookShop.GetNumberOfItems());
+            Assert.Throws(typeof(InvalidOperationException), () => { _bookShop.GetItem(1); });
         }
         [Test]
         public void CheckRemovingDevice()
         {
             _deviceShop.Remove(1);
             Assert.AreEqual(0, _deviceShop.GetNumberOfItems());
+            Assert.Throws(typeof(InvalidOperationException), () => { _deviceShop.GetItem(1); });
         }
         [Test]
         public void CheckUpdatingBook()
@@ -114,7 +117,7 @@ namespace Shopping.Tests
             };
             _bookShop.UpdateItem(newBook);
             Assert.AreEqual(1, _bookShop.GetNumberOfItems());
-            var receivedBook = _bookShop.BuyItem(newBook.Id);
+            var receivedBook = _bookShop.GetItem(newBook.Id);
             Assert.AreEqual("In a beautiful and furious world", receivedBook.Name);
             Assert.AreEqual(26.7, receivedBook.Price);
             Assert.AreEqual(68, receivedBook.Rating);
@@ -133,12 +136,11 @@ namespace Shopping.Tests
             };
             _deviceShop.UpdateItem(newDevice);
             Assert.AreEqual(1, _deviceShop.GetNumberOfItems());
-            var receivedDevice = _deviceShop.BuyItem(newDevice.Id);
+            var receivedDevice = _deviceShop.GetItem(newDevice.Id);
             Assert.AreEqual("GasCooker", receivedDevice.Name);
             Assert.AreEqual(38.6, receivedDevice.Price);
             Assert.AreEqual(49, receivedDevice.Rating);
             Assert.AreEqual("Italy", receivedDevice.ProducingCountry);
         }
-
     }
 }

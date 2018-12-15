@@ -8,7 +8,7 @@ namespace Shopping
          public abstract void ShowItems();
          public abstract T BuyItem(int id);
          public abstract void AddItem(T product);
-         public abstract T GetItem(int id); //получение товара по id
+         public abstract T GetItem(int id);
          public abstract void Remove(int id);
          public abstract void UpdateItem(T newItem);
      }
