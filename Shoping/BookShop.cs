@@ -56,5 +56,10 @@ namespace Shopping
         {
             return ShopItems.Count;
         }
+
+        public List<IBook> GetItems()
+        {
+            return ShopItems;
+        }
     }
 }

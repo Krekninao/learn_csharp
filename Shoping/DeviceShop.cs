@@ -67,5 +67,9 @@ namespace Shopping
         {
             return ShopItems.Count();
         }
+        public List<IDevice> GetItems()
+        {
+            return ShopItems;
+        }
     }
 }

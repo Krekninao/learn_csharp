@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping", "Shoping\Shopping.csproj", "{BD2871B5-AFC0-4B4E-8AEC-6ACF69AAC11A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Tests", "Shopping.Tests\Shopping.Tests\Shopping.Tests.csproj", "{D38E1AD7-3F2B-4537-93F9-54E963C030BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Tests", "Shopping.Tests\Shopping.Tests\Shopping.Tests.csproj", "{D38E1AD7-3F2B-4537-93F9-54E963C030BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Frontend", "Shopping.Frontend\Shopping.Frontend\Shopping.Frontend.csproj", "{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D38E1AD7-3F2B-4537-93F9-54E963C030BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D38E1AD7-3F2B-4537-93F9-54E963C030BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D38E1AD7-3F2B-4537-93F9-54E963C030BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
