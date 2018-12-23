@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping", "Shoping\Shopping.csproj", "{BD2871B5-AFC0-4B4E-8AEC-6ACF69AAC11A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Core", "Shoping\Shopping.Core.csproj", "{BD2871B5-AFC0-4B4E-8AEC-6ACF69AAC11A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Tests", "Shopping.Tests\Shopping.Tests\Shopping.Tests.csproj", "{D38E1AD7-3F2B-4537-93F9-54E963C030BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.Frontend", "Shopping.Frontend\Shopping.Frontend\Shopping.Frontend.csproj", "{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.Frontend", "Shopping.Frontend\Shopping.Frontend\Shopping.Frontend.csproj", "{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopping.ApplicationService", "Shopping.ApplicationService\Shopping.ApplicationService.csproj", "{C57A232E-36CA-40E7-BC0D-87EB8D702501}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopping.DataAccess", "Shopping.DataAccess\Shopping.DataAccess.csproj", "{FA40CA83-D079-4455-A05D-156E1F6F7929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{028DE47C-9603-41B1-A2F6-64BA6DBC3BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C57A232E-36CA-40E7-BC0D-87EB8D702501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C57A232E-36CA-40E7-BC0D-87EB8D702501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C57A232E-36CA-40E7-BC0D-87EB8D702501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C57A232E-36CA-40E7-BC0D-87EB8D702501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA40CA83-D079-4455-A05D-156E1F6F7929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA40CA83-D079-4455-A05D-156E1F6F7929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA40CA83-D079-4455-A05D-156E1F6F7929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA40CA83-D079-4455-A05D-156E1F6F7929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
