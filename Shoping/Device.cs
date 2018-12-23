@@ -5,7 +5,7 @@
         public string Name { get; set; }
         public double Price { get; set; }
         public int Rating { get; set; }
-        public int Id { get; set; }
+        public int ProductIdentificator { get; set; }
         public string ProducingCountry { get; set; }
 
         public Device()
@@ -16,7 +16,7 @@
         public Device(string data)
         {
             var dataArray = data.Split(' ');
-            Id = int.Parse(dataArray[0]);
+            ProductIdentificator = int.Parse(dataArray[0]);
             Name = dataArray[1];
             Price = float.Parse(dataArray[2]);
             Rating = int.Parse(dataArray[3]);

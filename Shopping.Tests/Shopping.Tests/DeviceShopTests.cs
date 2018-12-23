@@ -45,7 +45,7 @@ namespace Shopping.Tests
             };
             _deviceShop.AddItem(newDevice);
             Assert.AreEqual(2, _deviceShop.GetNumberOfItems());
-            var receivedDevice = _deviceShop.BuyItem(newDevice.Id);
+            var receivedDevice = _deviceShop.BuyItem(newDevice.ProductIdentificator);
             Assert.AreEqual("GasCooker", receivedDevice.Name);
             Assert.AreEqual(38.6, receivedDevice.Price);
             Assert.AreEqual(49, receivedDevice.Rating);
@@ -65,7 +65,7 @@ namespace Shopping.Tests
         {
             var newDevice = new Device
             {
-                Id = 1,
+                ProductIdentificator = 1,
                 Name = "GasCooker",
                 ProducingCountry = "Italy",
                 Price = 38.6,
@@ -73,7 +73,7 @@ namespace Shopping.Tests
             };
             _deviceShop.UpdateItem(newDevice);
             Assert.AreEqual(1, _deviceShop.GetNumberOfItems());
-            var receivedDevice = _deviceShop.GetItem(newDevice.Id);
+            var receivedDevice = _deviceShop.GetItem(newDevice.ProductIdentificator);
             Assert.AreEqual("GasCooker", receivedDevice.Name);
             Assert.AreEqual(38.6, receivedDevice.Price);
             Assert.AreEqual(49, receivedDevice.Rating);

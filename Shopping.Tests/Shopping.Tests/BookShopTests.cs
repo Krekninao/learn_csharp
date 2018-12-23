@@ -45,7 +45,7 @@ namespace Shopping.Tests
             };
             _bookShop.AddItem(newBook);
             Assert.AreEqual(2, _bookShop.GetNumberOfItems());
-            var receivedBook = _bookShop.BuyItem(newBook.Id);
+            var receivedBook = _bookShop.BuyItem(newBook.ProductIdentificator);
             Assert.AreEqual("In a beautiful and furious world", receivedBook.Name);
             Assert.AreEqual(26.7, receivedBook.Price);
             Assert.AreEqual(68, receivedBook.Rating);
@@ -66,7 +66,7 @@ namespace Shopping.Tests
         {
             var newBook = new Book
             {
-                Id = 1,
+                ProductIdentificator = 1,
                 Name = "In a beautiful and furious world",
                 Author = "Platonov",
                 Price = 26.7,
@@ -74,7 +74,7 @@ namespace Shopping.Tests
             };
             _bookShop.UpdateItem(newBook);
             Assert.AreEqual(1, _bookShop.GetNumberOfItems());
-            var receivedBook = _bookShop.GetItem(newBook.Id);
+            var receivedBook = _bookShop.GetItem(newBook.ProductIdentificator);
             Assert.AreEqual("In a beautiful and furious world", receivedBook.Name);
             Assert.AreEqual(26.7, receivedBook.Price);
             Assert.AreEqual(68, receivedBook.Rating);

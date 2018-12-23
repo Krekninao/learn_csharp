@@ -26,7 +26,7 @@ namespace Shopping
 
         public override IBook BuyItem(int id)
         {
-            var book = ShopItems.Single(s => s.Id == id);
+            var book = ShopItems.Single(s => s.ProductIdentificator == id);
             Console.WriteLine($"Вы купили {book}");
             ShopItems.Remove(book);
             return book;
@@ -39,17 +39,17 @@ namespace Shopping
 
         public override IBook GetItem(int id)
         {
-            return ShopItems.Single(s => s.Id == id);
+            return ShopItems.Single(s => s.ProductIdentificator == id);
         }
 
         public override void Remove(int id)
         {
-            ShopItems.Remove(ShopItems.Single(s => s.Id == id));
+            ShopItems.Remove(ShopItems.Single(s => s.ProductIdentificator == id));
         }
 
         public override void UpdateItem(IBook newItem)
         {
-            ShopItems.Single(s => s.Id == newItem.Id).Update(newItem);
+            ShopItems.Single(s => s.ProductIdentificator == newItem.ProductIdentificator).Update(newItem);
         }
 
         public int GetNumberOfItems()

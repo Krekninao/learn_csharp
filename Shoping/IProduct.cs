@@ -5,7 +5,7 @@
         string Name { get; set; }
         double Price { get; set; }
         int Rating { get; set; }
-        int Id { get; set; }
+        int ProductIdentificator { get; set; }
 
     }
 }

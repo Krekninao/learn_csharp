@@ -25,7 +25,7 @@ namespace Shopping
 
         public override IDevice BuyItem(int id)
         {
-            var device = ShopItems.Single(s => s.Id == id);
+            var device = ShopItems.Single(s => s.ProductIdentificator == id);
             Console.WriteLine($"Вы купили {device}");
             ShopItems.Remove(device);
             return device;
@@ -50,17 +50,17 @@ namespace Shopping
 
         public override IDevice GetItem(int id)
         {
-            return ShopItems.Single(s => s.Id == id);
+            return ShopItems.Single(s => s.ProductIdentificator == id);
         }
 
         public override void Remove(int id)
         {
-            ShopItems.Remove(ShopItems.Single(s => s.Id == id));
+            ShopItems.Remove(ShopItems.Single(s => s.ProductIdentificator == id));
         }
 
         public override void UpdateItem(IDevice newItem)
         {
-            ShopItems.Single(s => s.Id == newItem.Id).Update(newItem);
+            ShopItems.Single(s => s.ProductIdentificator == newItem.ProductIdentificator).Update(newItem);
         }
 
         public int GetNumberOfItems()
