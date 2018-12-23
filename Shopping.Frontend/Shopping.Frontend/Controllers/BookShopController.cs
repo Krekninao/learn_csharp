@@ -1,69 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using FileInput = System.IO.File;
+using Shopping.ApplicationService;
 
 namespace Shopping.Frontend.Controllers
 {
     [Route("api/[controller]")]
     public class BookShopController: Controller
     {
-        private readonly BookShop _bookShop;
-        public BookShopController(IServiceProvider serviceProvider)
+        private readonly BookShopApplicationService _applicationService;
+        public BookShopController(BookShopApplicationService applicationService)
         {
-            using (var dbContext =
-                new ShopContext(serviceProvider.GetRequiredService<DbContextOptions<ShopContext>>()))
-            {
-                var items = _bookShop.GetItems();
-                foreach (var item in items)
-                {
-                    dbContext.Books.Add(new Book
-                    {
-                        Price = item.Price,
-                        Name = item.Name,
-                        Rating = item.Rating,
-                        Author = item.Author
-                    });
-                }
-
-                dbContext.SaveChanges();
-            }
+            _applicationService = applicationService;
         }
 
         [HttpGet]
         public List<IBook> GetBooks()
         {
-            return _bookShop.GetItems();
+            return _applicationService.GetBooks();
         }
 
         [HttpGet("{id}")]
         public IBook GetBook(int id)
         {
-            return _bookShop.GetItem(id);
+            return _applicationService.GetBook(id);
         }
 
         [HttpPost]
-        public List<IBook> AddBook([FromBody] Book book)
+        public void AddBook([FromBody] Book book)
         {
-
-            _bookShop.AddItem(book);
-            return _bookShop.GetItems();
+            _applicationService.AddBook(book);
         }
 
         [HttpPut]
-        public List<IBook> UpdateBook([FromBody] Book newBook)
+        public void UpdateBook([FromBody] Book newBook)
         {
-            _bookShop.UpdateItem(newBook);
-            return _bookShop.GetItems();
+            _applicationService.UpdateBook(newBook);
         }
 
         [HttpDelete("{id}")]
-        public List<IBook> DeleteBook(int id)
+        public void DeleteBook(int id)
         {
-            _bookShop.Remove(id);
-            return _bookShop.GetItems();
+            _applicationService.DeleteBook(id);
         }
     }
 }

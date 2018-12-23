@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Shopping.Frontend
+namespace Shopping.DataAccess
 {
     public class ShopContext : DbContext
     {
