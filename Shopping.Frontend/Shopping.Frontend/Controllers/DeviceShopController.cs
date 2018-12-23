@@ -15,19 +15,19 @@ namespace Shopping.Frontend.Controllers
         }
 
         [HttpGet]
-        public List<IDevice> GetBooks()
+        public List<IDevice> GetDevices()
         {
             return _deviceShop.GetItems();
         }
 
         [HttpGet("{id}")]
-        public IDevice GetBook(int id)
+        public IDevice GetDevice(int id)
         {
             return _deviceShop.GetItem(id);
         }
 
         [HttpPost]
-        public List<IDevice> AddBook([FromBody] Device device)
+        public List<IDevice> AddDevice([FromBody] Device device)
         {
 
             _deviceShop.AddItem(device);
@@ -35,14 +35,14 @@ namespace Shopping.Frontend.Controllers
         }
 
         [HttpPut]
-        public List<IDevice> UpdateBook([FromBody] Device newDevice)
+        public List<IDevice> UpdateDevice([FromBody] Device newDevice)
         {
             _deviceShop.UpdateItem(newDevice);
             return _deviceShop.GetItems();
         }
 
         [HttpDelete("{id}")]
-        public List<IDevice> DeleteBook(int id)
+        public List<IDevice> DeleteDevice(int id)
         {
             _deviceShop.Remove(id);
             return _deviceShop.GetItems();
