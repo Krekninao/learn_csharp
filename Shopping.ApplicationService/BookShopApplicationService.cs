@@ -25,7 +25,10 @@ namespace Shopping.ApplicationService
 
         public IBook GetBook(int id)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            {
+                return (IBook)dbContext.Books.Select(b => b.ProductIdentificator == id);
+            }
         }
 
         public void AddBook(Book book)
@@ -43,14 +46,22 @@ namespace Shopping.ApplicationService
             }
         }
 
-        public void UpdateBook(object book)
+        public void UpdateBook(IBook book)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            {
+                dbContext.Books.Single(b => b.ProductIdentificator == book.ProductIdentificator).Update(book);
+                
+            }
         }
 
         public void DeleteBook(int id)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            {
+                var delBook = dbContext.Books.Single(b => b.ProductIdentificator == id);
+                dbContext.Books.Remove(delBook);
+            }
         }
     }
 }
