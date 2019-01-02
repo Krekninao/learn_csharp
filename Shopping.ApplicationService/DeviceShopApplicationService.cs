@@ -7,60 +7,60 @@ using Shopping.DataAccess;
 
 namespace Shopping.ApplicationService
 {
-    public class BookShopApplicationService
+    class DeviceShopApplicationService
     {
         private readonly IServiceProvider _provider;
 
-        public BookShopApplicationService(IServiceProvider provider)
+        public DeviceShopApplicationService(IServiceProvider provider)
         {
             _provider = provider;
         }
-        public List<IBook> GetBooks()
+        public List<Device> GetDevices()
         {
             using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
             {
-                return dbContext.Books.Select(b => (IBook)b).ToList();
+                return dbContext.Devices.ToList();
             }
         }
 
-        public Book GetBook(int id)
+        public Device GetDevice(int id)
         {
             using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
             {
-                return dbContext.Books.Single(b => b.ProductIdentificator == id);
+                return dbContext.Devices.Single(b => b.ProductIdentificator == id);
             }
         }
 
-        public void AddBook(Book book)
+        public void AddDevice(Device device)
         {
             using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
             {
-                dbContext.Books.Add(new Book
+                dbContext.Devices.Add(new Device
                 {
-                    Price = book.Price,
-                    Name = book.Name,
-                    Rating = book.Rating,
-                    Author = book.Author
+                    Price = device.Price,
+                    Name = device.Name,
+                    Rating = device.Rating,
+                    ProducingCountry = device.ProducingCountry
                 });
                 dbContext.SaveChanges();
             }
         }
 
-        public void UpdateBook(IBook book)
+        public void UpdateDevice(Device device)
         {
             using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
             {
-                dbContext.Books.Single(b => b.ProductIdentificator == book.ProductIdentificator).Update(book);
-                
+                dbContext.Devices.Single(b => b.ProductIdentificator == device.ProductIdentificator).Update(device);
+
             }
         }
 
-        public void DeleteBook(int id)
+        public void DeleteDevice(int id)
         {
             using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
             {
-                var delBook = dbContext.Books.Single(b => b.ProductIdentificator == id);
-                dbContext.Books.Remove(delBook);
+                var delDevice = dbContext.Books.Single(b => b.ProductIdentificator == id);
+                dbContext.Books.Remove(delDevice);
             }
         }
     }
