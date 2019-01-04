@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Shopping.DataAccess;
 
 namespace Shopping.ApplicationService
 {
     public class BookShopApplicationService
     {
-        private readonly IServiceProvider _provider;
-
-        public BookShopApplicationService(IServiceProvider provider)
-        {
-            _provider = provider;
-        }
         public List<IBook> GetBooks()
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 return dbContext.Books.Select(b => (IBook)b).ToList();
             }
@@ -25,7 +16,7 @@ namespace Shopping.ApplicationService
 
         public Book GetBook(int id)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 return dbContext.Books.Single(b => b.ProductIdentificator == id);
             }
@@ -33,7 +24,7 @@ namespace Shopping.ApplicationService
 
         public void AddBook(Book book)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 dbContext.Books.Add(new Book
                 {
@@ -48,7 +39,7 @@ namespace Shopping.ApplicationService
 
         public void UpdateBook(IBook book)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 dbContext.Books.Single(b => b.ProductIdentificator == book.ProductIdentificator).Update(book);
                 
@@ -57,7 +48,7 @@ namespace Shopping.ApplicationService
 
         public void DeleteBook(int id)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 var delBook = dbContext.Books.Single(b => b.ProductIdentificator == id);
                 dbContext.Books.Remove(delBook);

@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Shopping.DataAccess;
 
 namespace Shopping.ApplicationService
 {
-    class DeviceShopApplicationService
+    public class DeviceShopApplicationService
     {
-        private readonly IServiceProvider _provider;
-
-        public DeviceShopApplicationService(IServiceProvider provider)
-        {
-            _provider = provider;
-        }
         public List<Device> GetDevices()
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 return dbContext.Devices.ToList();
             }
@@ -25,7 +16,7 @@ namespace Shopping.ApplicationService
 
         public Device GetDevice(int id)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 return dbContext.Devices.Single(b => b.ProductIdentificator == id);
             }
@@ -33,7 +24,7 @@ namespace Shopping.ApplicationService
 
         public void AddDevice(Device device)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 dbContext.Devices.Add(new Device
                 {
@@ -48,7 +39,7 @@ namespace Shopping.ApplicationService
 
         public void UpdateDevice(Device device)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 dbContext.Devices.Single(b => b.ProductIdentificator == device.ProductIdentificator).Update(device);
 
@@ -57,7 +48,7 @@ namespace Shopping.ApplicationService
 
         public void DeleteDevice(int id)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 var delDevice = dbContext.Books.Single(b => b.ProductIdentificator == id);
                 dbContext.Books.Remove(delDevice);
