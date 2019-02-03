@@ -1,36 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Shopping.DataAccess;
 
 namespace Shopping.ApplicationService
 {
     public class BookShopApplicationService
     {
-        private readonly IServiceProvider _provider;
-
-        public BookShopApplicationService(IServiceProvider provider)
-        {
-            _provider = provider;
-        }
         public List<IBook> GetBooks()
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 return dbContext.Books.Select(b => (IBook)b).ToList();
             }
         }
 
-        public IBook GetBook(int id)
+        public Book GetBook(int id)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new ShopContext())
+            {
+                return dbContext.Books.Single(b => b.ProductIdentificator == id);
+            }
         }
 
         public void AddBook(Book book)
         {
-            using (var dbContext = new ShopContext(_provider.GetRequiredService<DbContextOptions<ShopContext>>()))
+            using (var dbContext = new ShopContext())
             {
                 dbContext.Books.Add(new Book
                 {
@@ -43,14 +37,22 @@ namespace Shopping.ApplicationService
             }
         }
 
-        public void UpdateBook(object book)
+        public void UpdateBook(IBook book)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new ShopContext())
+            {
+                dbContext.Books.Single(b => b.ProductIdentificator == book.ProductIdentificator).Update(book);
+                
+            }
         }
 
         public void DeleteBook(int id)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new ShopContext())
+            {
+                var delBook = dbContext.Books.Single(b => b.ProductIdentificator == id);
+                dbContext.Books.Remove(delBook);
+            }
         }
     }
 }

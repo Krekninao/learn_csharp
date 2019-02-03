@@ -7,8 +7,10 @@ namespace Shopping.DataAccess
         public DbSet<Book> Books { get; set; }
         public DbSet<Device> Devices { get; set; }
 
-        public ShopContext(DbContextOptions<ShopContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlServer(
+                "Server=MSI\\SQLEXPRESS;Database=Shopping;Trusted_Connection=True;MultipleActiveResultSets=true;User Id=sa;Password=2wsx2WSX");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
