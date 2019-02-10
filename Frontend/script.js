@@ -23,4 +23,41 @@ function getBooks() {
     };
 
     xhr.send();
+
+}
+
+function addBook() {
+    var bookName = document.getElementById("bookName").value;
+    var author = document.getElementById("author").value;
+    var rating = document.getElementById("rating").value;
+    var price = document.getElementById("price").value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost:8080/api/bookshop', true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            var list = document.getElementById("bookList");
+            var text = "Название: " + bookName + "\nАвтор: " + author + "\nСтоимость: " + price + "\nРейтинг: " + rating;
+            var li = document.createElement("li");
+            li.innerText = text;
+            list.appendChild(li);
+        };
+    };
+
+    var book = {
+        name: bookName,
+        author: author,
+        rating: rating,
+        price: price
+    };
+    var json = JSON.stringify(book);
+
+    xhr.send(json);
+
+
+
+
+
 }
