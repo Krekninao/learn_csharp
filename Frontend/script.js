@@ -43,6 +43,11 @@ function addBook() {
             var li = document.createElement("li");
             li.innerText = text;
             list.appendChild(li);
+            document.getElementById("bookName").value = "";
+            document.getElementById("author").value = "";
+            document.getElementById("rating").value = "";
+            document.getElementById("price").value = "";
+
         };
     };
 
@@ -59,5 +64,24 @@ function addBook() {
 
 
 
+
+}
+function deleteBook() {
+    var bookID = document.getElementById("ID").value;
+    var xhr = new XMLHttpRequest();
+    var url = 'http://localhost:8080/api/bookshop/' + bookID;
+
+    xhr.open('DELETE', url, true);
+
+    xhr.setRequestHeader('Content-type', 'application/json');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            document.getElementById("bookList").innerHTML = "";
+            getBooks();
+        };
+    };
+
+    xhr.send();
 
 }

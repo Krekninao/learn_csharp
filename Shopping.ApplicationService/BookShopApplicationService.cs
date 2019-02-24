@@ -52,6 +52,7 @@ namespace Shopping.ApplicationService
             {
                 var delBook = dbContext.Books.Single(b => b.ProductIdentificator == id);
                 dbContext.Books.Remove(delBook);
+                dbContext.SaveChanges();
             }
         }
     }
