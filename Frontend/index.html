@@ -7,12 +7,12 @@
     <title>Document</title>
     <script src="js/script.js"></script>
     <script src="js/angular.min.js"></script>
+    <script> initController() </script>
 </head>
 
-<body>
-    <h1>Hello world</h1>
+<body ng-controller="bookShopController">
     <button onclick="testFunction()">Click me</button>
-    <button onclick="getBooks()">get books</button><br>
+    <button ng-click="getBooks()">get books</button><br>
     <button onclick="addBook()">Add Book</button><br>
     <button onclick="deleteBook()">Delete Book</button><br>
     <button onclick="updateBook()">Update Book</button>

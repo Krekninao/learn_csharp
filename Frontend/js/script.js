@@ -1,5 +1,25 @@
 var response = null;
 
+function initController(){
+    var bookShopModule = angular.module("bookShopApp", []);
+    bookShopModule.controller("bookShopController", function($scope, $http){
+        $scope.getBooks = function (){
+            $http.get('http://localhost:8080/api/bookshop').
+                then(function success(res) {
+                    var response = res.data;
+
+                    var list = document.getElementById("bookList");
+                    response.forEach(book => {
+                        var text = "Название: " + book.name + "\nАвтор: " + book.author + "\nСтоимость: " + book.price + "\nРейтинг: " + book.rating + "\nID: " + book.productIdentificator;
+                        var li = document.createElement("li");
+                        li.innerText = text;
+                        list.appendChild(li);
+                    });
+            });
+        };
+    });
+}
+
 function getBooks() {
     // 1. Создаём новый объект XMLHttpRequest
     var xhr = new XMLHttpRequest();
