@@ -6,15 +6,8 @@ function initController(){
         $scope.getBooks = function (){
             $http.get('http://localhost:8080/api/bookshop').
                 then(function success(res) {
-                    var response = res.data;
+                   $scope.books = res.data;
 
-                    var list = document.getElementById("bookList");
-                    response.forEach(book => {
-                        var text = "Название: " + book.name + "\nАвтор: " + book.author + "\nСтоимость: " + book.price + "\nРейтинг: " + book.rating + "\nID: " + book.productIdentificator;
-                        var li = document.createElement("li");
-                        li.innerText = text;
-                        list.appendChild(li);
-                    });
             });
         };
     });
