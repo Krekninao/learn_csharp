@@ -42,7 +42,8 @@ namespace Shopping.ApplicationService
             using (var dbContext = new ShopContext())
             {
                 dbContext.Books.Single(b => b.ProductIdentificator == book.ProductIdentificator).Update(book);
-                
+                dbContext.SaveChanges();
+
             }
         }
 

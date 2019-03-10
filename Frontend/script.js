@@ -1,6 +1,4 @@
-function testFunction() {
-    alert('Hello world');
-}
+var response = null;
 
 function getBooks() {
     // 1. Создаём новый объект XMLHttpRequest
@@ -10,11 +8,11 @@ function getBooks() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            var response = JSON.parse(xhr.responseText);
+            response = JSON.parse(xhr.responseText);
 
             var list = document.getElementById("bookList");
             response.forEach(book => {
-                var text = "Название: " + book.name + "\nАвтор: " + book.author + "\nСтоимость: " + book.price + "\nРейтинг: " + book.rating;
+                var text = "Название: " + book.name + "\nАвтор: " + book.author + "\nСтоимость: " + book.price + "\nРейтинг: " + book.rating + "\nID: " + book.productIdentificator;
                 var li = document.createElement("li");
                 li.innerText = text;
                 list.appendChild(li);
@@ -60,10 +58,42 @@ function addBook() {
     var json = JSON.stringify(book);
 
     xhr.send(json);
+}
 
+function updateBook() {
+    var bookID = document.getElementById("updateBookID").value;
+    var bookName = document.getElementById("bookName").value;
+    var author = document.getElementById("author").value;
+    var rating = document.getElementById("rating").value;
+    var price = document.getElementById("price").value;
+    var initialBookInfo = response.find(function (element, index, array) {
+        if (element.productIdentificator ===  parseInt(bookID)) {
+            return element;
+        }
+    });
+    bookName = bookName === "" ? initialBookInfo.name : bookName;
+    author = author === "" ? initialBookInfo.author : author;
+    rating = rating === "" ? initialBookInfo.rating : rating;
+    price = price === "" ? initialBookInfo.price : price;
+    var book = {
+        productIdentificator: bookID,
+        name: bookName,
+        author: author,
+        rating: rating,
+        price: price
+    };
+    var json = JSON.stringify(book);
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT', 'http://localhost:8080/api/bookshop', true);
+    xhr.setRequestHeader('Content-type', 'application/json');
 
-
-
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            document.getElementById("bookList").innerHTML = "";
+            getBooks();
+        };
+    };
+    xhr.send(json);
 
 }
 function deleteBook() {
