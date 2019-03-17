@@ -7,7 +7,7 @@ function initController(){
             $http.get('http://localhost:8080/api/bookshop').
                 then(function success(res) {
                    $scope.books = res.data;
-
+                   
             });
         };
     });

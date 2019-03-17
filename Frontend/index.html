@@ -16,7 +16,18 @@
     <button onclick="addBook()">Add Book</button><br>
     <button onclick="deleteBook()">Delete Book</button><br>
     <button onclick="updateBook()">Update Book</button>
-    Update(input ID): <br>
+    
+<h3>Книги</h3>
+<div class="books">
+<div ng-repeat="book in books" class="book">
+<b> {{book.productIdentificator}}</b>
+<b>{{book.name}}</b>
+<b>{{book.author}}</b>
+<b>{{book.rating}}</b>
+<b>{{book.price}}</b>
+</div>
+</div>
+    <!-- Update(input ID): <br>
     <input type="text" id="updateBookID">
     <br>
     Delete Book(input ID):<br>
@@ -32,8 +43,8 @@
     <input type="text" id="rating">
     <br>
     Price:<br>
-    <input type="text" id="price">
-    
+    <input type="text" id="price"> -->
+
 </body>
 
 </html>
