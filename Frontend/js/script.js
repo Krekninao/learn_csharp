@@ -10,8 +10,19 @@ function initController(){
                    
             });
         };
+        $scope.deleteMe = function(ID) {
+            var url = 'http://localhost:8080/api/bookshop/' + ID;
+            $http.delete(url).
+            success(function(res){
+                console.log("Laky!");
+                $scope.books = $scope.books.filter(book => book.productIdentificator !== ID);
+            })
+           
+        };
+        
     });
 }
+
 
 function getBooks() {
     // 1. Создаём новый объект XMLHttpRequest

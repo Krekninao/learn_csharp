@@ -21,6 +21,7 @@
 <div class="books">
 <div ng-repeat="book in books" class="book">
 <b> {{book.productIdentificator}}</b>
+<button ng-click="deleteMe(book.productIdentificator)">Delete Me</button>
 <b>{{book.name}}</b>
 <b>{{book.author}}</b>
 <b>{{book.rating}}</b>
