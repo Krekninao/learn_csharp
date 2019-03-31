@@ -20,7 +20,7 @@ namespace Shopping.Frontend.Controllers
         }
 
         [HttpGet("{id}")]
-        public IBook GetBook(int id)
+        public Book GetBook(int id)
         {
             return _applicationService.GetBook(id);
         }

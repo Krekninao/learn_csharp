@@ -5,29 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="js/script.js"></script>
     <script src="js/angular.min.js"></script>
     <script> initController() </script>
 </head>
 
-<body ng-controller="bookShopController">
-    <button onclick="testFunction()">Click me</button>
-    <button ng-click="getBooks()">get books</button><br>
-    <button onclick="addBook()">Add Book</button><br>
-    <button onclick="deleteBook()">Delete Book</button><br>
-    <button onclick="updateBook()">Update Book</button>
-    
-<h3>Книги</h3>
-<div class="books">
-<div ng-repeat="book in books" class="book">
-<b> {{book.productIdentificator}}</b>
-<button ng-click="deleteMe(book.productIdentificator)">Delete Me</button>
-<b>{{book.name}}</b>
-<b>{{book.author}}</b>
-<b>{{book.rating}}</b>
-<b>{{book.price}}</b>
-</div>
-</div>
+<body class="jumbotron" ng-controller="bookShopController">
+    <button class="btn btn-primary" onclick="addBook()">Add Book</button><br>
+
+    <h1 class="display-4">Книги</h1>
+
+    <div class="row"></div>
+    <div class="container books">
+        <div ng-repeat="book in books" class="book">
+            <i class="fa fa-times" class="close" ng-click="deleteBook(book.productIdentificator)" aria-hidden="true"></i>
+            <i class="fa fa-pencil-square-o" ng-click="editBook(book.productIdentificator)" aria-hidden="true"></i>
+
+            <b>{{book.name}}</b>
+            <b>{{book.author}}</b>
+            <b>{{book.rating}}</b>
+            <b>{{book.price}}</b>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">Edit book</div>
+        <input ng-model="name" type="text">
+        <input ng-model="author" type="text">
+        <input ng-model="rating" type="text">
+        <input ng-model="price" type="text">
+        <button ng-click = "saveBook()">Save</button>
+    </div>
     <!-- Update(input ID): <br>
     <input type="text" id="updateBookID">
     <br>

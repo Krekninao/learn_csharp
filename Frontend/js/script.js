@@ -1,51 +1,67 @@
 var response = null;
 
-function initController(){
+function initController() {
     var bookShopModule = angular.module("bookShopApp", []);
-    bookShopModule.controller("bookShopController", function($scope, $http){
-        $scope.getBooks = function (){
+    bookShopModule.controller("bookShopController", function ($scope, $http) {
+        $scope.books = [];
+        function loadData() {
             $http.get('http://localhost:8080/api/bookshop').
                 then(function success(res) {
-                   $scope.books = res.data;
-                   
-            });
-        };
-        $scope.deleteMe = function(ID) {
+                    $scope.books = res.data;
+
+                });
+        }
+
+        loadData();
+
+        $scope.deleteBook = function (ID) {
             var url = 'http://localhost:8080/api/bookshop/' + ID;
             $http.delete(url).
-            success(function(res){
-                console.log("Laky!");
-                $scope.books = $scope.books.filter(book => book.productIdentificator !== ID);
+                success(function (res) {
+                    $scope.books = $scope.books.filter(book => book.productIdentificator !== ID);
+                });
+
+        };
+        $scope.editBook = function (ID) {
+            // var url = 'http://localhost:8080/api/bookshop/' + ID;
+            // $http.get(url).
+            //     then(function success (res) {
+            //         console.log(res);
+            //     });
+            var book = $scope.books.filter(book => book.productIdentificator === ID)[0];
+            $scope.ID = book.productIdentificator;
+            $scope.name = book.name;
+            $scope.author = book.author;
+            $scope.rating = book.rating;
+            $scope.price = book.price;
+
+
+        };
+        $scope.saveBook = function () {
+            var book = {
+                productIdentificator: $scope.ID,
+                name: $scope.name,
+                author: $scope.author,
+                rating: $scope.rating,
+                price: $scope.price
+            };
+            var url = 'http://localhost:8080/api/bookshop';
+            $http.put(url, book).then(function success(res) {
+                var book = $scope.books.filter(book => book.productIdentificator === $scope.ID)[0];
+                book.name = $scope.name;
+                book.author = $scope.author;
+                book.rating = $scope.rating;
+                book.price = $scope.price;
+
+                $scope.ID = "";
+                $scope.name = "";
+                $scope.author = "";
+                $scope.rating = "";
+                $scope.price = "";
             })
-           
-        };
-        
+        }
+
     });
-}
-
-
-function getBooks() {
-    // 1. Создаём новый объект XMLHttpRequest
-    var xhr = new XMLHttpRequest();
-
-    xhr.open('GET', 'http://localhost:8080/api/bookshop', true);
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            response = JSON.parse(xhr.responseText);
-
-            var list = document.getElementById("bookList");
-            response.forEach(book => {
-                var text = "Название: " + book.name + "\nАвтор: " + book.author + "\nСтоимость: " + book.price + "\nРейтинг: " + book.rating + "\nID: " + book.productIdentificator;
-                var li = document.createElement("li");
-                li.innerText = text;
-                list.appendChild(li);
-            });
-        };
-    };
-
-    xhr.send();
-
 }
 
 function addBook() {
@@ -84,58 +100,3 @@ function addBook() {
     xhr.send(json);
 }
 
-function updateBook() {
-    var bookID = document.getElementById("updateBookID").value;
-    var bookName = document.getElementById("bookName").value;
-    var author = document.getElementById("author").value;
-    var rating = document.getElementById("rating").value;
-    var price = document.getElementById("price").value;
-    var initialBookInfo = response.find(function (element, index, array) {
-        if (element.productIdentificator ===  parseInt(bookID)) {
-            return element;
-        }
-    });
-    bookName = bookName === "" ? initialBookInfo.name : bookName;
-    author = author === "" ? initialBookInfo.author : author;
-    rating = rating === "" ? initialBookInfo.rating : rating;
-    price = price === "" ? initialBookInfo.price : price;
-    var book = {
-        productIdentificator: bookID,
-        name: bookName,
-        author: author,
-        rating: rating,
-        price: price
-    };
-    var json = JSON.stringify(book);
-    var xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:8080/api/bookshop', true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            document.getElementById("bookList").innerHTML = "";
-            getBooks();
-        };
-    };
-    xhr.send(json);
-
-}
-function deleteBook() {
-    var bookID = document.getElementById("ID").value;
-    var xhr = new XMLHttpRequest();
-    var url = 'http://localhost:8080/api/bookshop/' + bookID;
-
-    xhr.open('DELETE', url, true);
-
-    xhr.setRequestHeader('Content-type', 'application/json');
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            document.getElementById("bookList").innerHTML = "";
-            getBooks();
-        };
-    };
-
-    xhr.send();
-
-}
