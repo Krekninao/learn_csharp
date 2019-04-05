@@ -13,7 +13,7 @@
 </head>
 
 <body class="jumbotron" ng-controller="bookShopController">
-    <button class="btn btn-primary" onclick="addBook()">Add Book</button><br>
+    <button class="btn btn-primary" ng-click="addBook()"> Add Book </button><br>
 
     <h1 class="display-4">Книги</h1>
 
@@ -22,7 +22,6 @@
         <div ng-repeat="book in books" class="book">
             <i class="fa fa-times" class="close" ng-click="deleteBook(book.productIdentificator)" aria-hidden="true"></i>
             <i class="fa fa-pencil-square-o" ng-click="editBook(book.productIdentificator)" aria-hidden="true"></i>
-
             <b>{{book.name}}</b>
             <b>{{book.author}}</b>
             <b>{{book.rating}}</b>

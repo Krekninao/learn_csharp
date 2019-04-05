@@ -14,6 +14,19 @@ function initController() {
 
         loadData();
 
+        $scope.addBook = function(){
+            var book = {
+                name: $scope.name,
+                author: $scope.author,
+                rating: $scope.rating,
+                price: $scope.price
+            };
+            var url = 'http://localhost:8080/api/bookshop/';
+            $http.post(url, book).then(function success(res) {
+                $scope.books.push(book);
+            })
+
+        }
         $scope.deleteBook = function (ID) {
             var url = 'http://localhost:8080/api/bookshop/' + ID;
             $http.delete(url).
@@ -64,39 +77,39 @@ function initController() {
     });
 }
 
-function addBook() {
-    var bookName = document.getElementById("bookName").value;
-    var author = document.getElementById("author").value;
-    var rating = document.getElementById("rating").value;
-    var price = document.getElementById("price").value;
+// function addBook() {
+//     var bookName = document.getElementById("bookName").value;
+//     var author = document.getElementById("author").value;
+//     var rating = document.getElementById("rating").value;
+//     var price = document.getElementById("price").value;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://localhost:8080/api/bookshop', true);
-    xhr.setRequestHeader('Content-type', 'application/json');
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('POST', 'http://localhost:8080/api/bookshop', true);
+//     xhr.setRequestHeader('Content-type', 'application/json');
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            var list = document.getElementById("bookList");
-            var text = "Название: " + bookName + "\nАвтор: " + author + "\nСтоимость: " + price + "\nРейтинг: " + rating;
-            var li = document.createElement("li");
-            li.innerText = text;
-            list.appendChild(li);
-            document.getElementById("bookName").value = "";
-            document.getElementById("author").value = "";
-            document.getElementById("rating").value = "";
-            document.getElementById("price").value = "";
+//     xhr.onreadystatechange = function () {
+//         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+//             var list = document.getElementById("bookList");
+//             var text = "Название: " + bookName + "\nАвтор: " + author + "\nСтоимость: " + price + "\nРейтинг: " + rating;
+//             var li = document.createElement("li");
+//             li.innerText = text;
+//             list.appendChild(li);
+//             document.getElementById("bookName").value = "";
+//             document.getElementById("author").value = "";
+//             document.getElementById("rating").value = "";
+//             document.getElementById("price").value = "";
 
-        };
-    };
+//         };
+//     };
 
-    var book = {
-        name: bookName,
-        author: author,
-        rating: rating,
-        price: price
-    };
-    var json = JSON.stringify(book);
+//     var book = {
+//         name: bookName,
+//         author: author,
+//         rating: rating,
+//         price: price
+//     };
+//     var json = JSON.stringify(book);
 
-    xhr.send(json);
-}
+//     xhr.send(json);
+// }
 
