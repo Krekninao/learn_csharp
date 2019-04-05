@@ -1,0 +1,32 @@
+.book{
+    height: 150px;
+    width: 250px;
+    border-bottom: 1px solid #aaa;
+    padding-left: 15px;
+    display: table;
+}
+
+.book-name{
+    font-size: 24px;
+    color: #aaa;
+}
+
+.book-author{
+    font-size: 20px;
+    display: block;
+    color: #ccc;
+}
+
+.book-info{
+    display: block;
+    color: #cde;
+}
+
+.book-content{
+    display: table-cell;
+    width: 75%;
+}
+
+.book-actions{
+    display: table-cell;
+}

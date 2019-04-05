@@ -5,7 +5,7 @@ function initController() {
     bookShopModule.controller("bookShopController", function ($scope, $http) {
         $scope.books = [];
         function loadData() {
-            $http.get('http://localhost:8080/api/bookshop').
+            $http.get('http://localhost:49635/api/bookshop').
                 then(function success(res) {
                     $scope.books = res.data;
 
@@ -21,14 +21,14 @@ function initController() {
                 rating: $scope.rating,
                 price: $scope.price
             };
-            var url = 'http://localhost:8080/api/bookshop/';
+            var url = 'http://localhost:49635/api/bookshop/';
             $http.post(url, book).then(function success(res) {
                 $scope.books.push(book);
             })
 
         }
         $scope.deleteBook = function (ID) {
-            var url = 'http://localhost:8080/api/bookshop/' + ID;
+            var url = 'http://localhost:49635/api/bookshop/' + ID;
             $http.delete(url).
                 success(function (res) {
                     $scope.books = $scope.books.filter(book => book.productIdentificator !== ID);
@@ -36,7 +36,7 @@ function initController() {
 
         };
         $scope.editBook = function (ID) {
-            // var url = 'http://localhost:8080/api/bookshop/' + ID;
+            // var url = 'http://localhost:49635/api/bookshop/' + ID;
             // $http.get(url).
             //     then(function success (res) {
             //         console.log(res);
@@ -58,7 +58,7 @@ function initController() {
                 rating: $scope.rating,
                 price: $scope.price
             };
-            var url = 'http://localhost:8080/api/bookshop';
+            var url = 'http://localhost:49635/api/bookshop';
             $http.put(url, book).then(function success(res) {
                 var book = $scope.books.filter(book => book.productIdentificator === $scope.ID)[0];
                 book.name = $scope.name;
@@ -84,7 +84,7 @@ function initController() {
 //     var price = document.getElementById("price").value;
 
 //     var xhr = new XMLHttpRequest();
-//     xhr.open('POST', 'http://localhost:8080/api/bookshop', true);
+//     xhr.open('POST', 'http://localhost:49635/api/bookshop', true);
 //     xhr.setRequestHeader('Content-type', 'application/json');
 
 //     xhr.onreadystatechange = function () {
