@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="js/script.js"></script>
     <script src="js/angular.min.js"></script>
     <script> initController() </script>
@@ -20,12 +22,20 @@
     <div class="row"></div>
     <div class="container books">
         <div ng-repeat="book in books" class="book">
-            <i class="fa fa-times" class="close" ng-click="deleteBook(book.productIdentificator)" aria-hidden="true"></i>
-            <i class="fa fa-pencil-square-o" ng-click="editBook(book.productIdentificator)" aria-hidden="true"></i>
-            <b>{{book.name}}</b>
-            <b>{{book.author}}</b>
-            <b>{{book.rating}}</b>
-            <b>{{book.price}}</b>
+            <div class="book-image">
+                <img ng-src="{{getImage(book.productIdentificator)}}" alt="Description" height="50px" width="50px" />
+            </div>
+            <div class="book-content">
+                <span class="book-name">{{book.name}}</span>
+                <span class="book-author">{{book.author}}</span>
+                <span class="book-info">{{book.rating}}</span>
+                <span class="book-info">{{book.price}}</span>
+            </div>
+            <div class="book-actions">
+                <i class="fa fa-times" class="close" ng-click="deleteBook(book.productIdentificator)"
+                    aria-hidden="true"></i>
+                <i class="fa fa-pencil-square-o" ng-click="editBook(book.productIdentificator)" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
 
@@ -36,7 +46,7 @@
         <input ng-model="author" type="text">
         <input ng-model="rating" type="text">
         <input ng-model="price" type="text">
-        <button ng-click = "saveBook()">Save</button>
+        <button ng-click="saveBook()">Save</button>
     </div>
     <!-- Update(input ID): <br>
     <input type="text" id="updateBookID">

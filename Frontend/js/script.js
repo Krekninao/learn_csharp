@@ -36,11 +36,7 @@ function initController() {
 
         };
         $scope.editBook = function (ID) {
-            // var url = 'http://localhost:8080/api/bookshop/' + ID;
-            // $http.get(url).
-            //     then(function success (res) {
-            //         console.log(res);
-            //     });
+    
             var book = $scope.books.filter(book => book.productIdentificator === ID)[0];
             $scope.ID = book.productIdentificator;
             $scope.name = book.name;
@@ -73,7 +69,10 @@ function initController() {
                 $scope.price = "";
             })
         }
-
+        $scope.getImage = function(ID){
+            var value = ID%5;
+            return "image/" + value + ".png";
+        }
     });
 }
 
